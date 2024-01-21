@@ -17,6 +17,7 @@ topology:
       image: praqma/network-multitool:extra
       exec:
       - ip -6 route del default dev eth0
+      - ip -4 address add 192.168.0.10/24 dev eth1
   links:
     - endpoints: ["srl:e1-1", "vswitch:eth1"]
     - endpoints: ["PC3:eth1", "vswitch:eth2"]
