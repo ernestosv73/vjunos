@@ -21,4 +21,4 @@ topology:
   links:
     - endpoints: ["srl:e1-1", "vswitch:eth1"]
     - endpoints: ["PC3:eth1", "vswitch:eth2"]
-    - endpoints: ["srl:e1-3", "vswitch:eth3"]
+   
