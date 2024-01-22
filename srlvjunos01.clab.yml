@@ -9,11 +9,7 @@ topology:
 
     vswitch:
       kind: juniper_vjunosswitch
-      env:
-        # boot delay in seconds
-        BOOT_DELAY: 30
       image: vrnetlab/vr-vjunosswitch:23.1R1.8
-      
       startup-config: vjunos.cfg
 
   links:
