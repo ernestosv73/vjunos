@@ -9,7 +9,7 @@ topology:
 
     vswitch:
       kind: juniper_vjunosswitch
-      image: vrnetlab/vr-vjunosswitch:23.2R1.14
+      image: vrnetlab/vr-vjunosswitch:23.1R1.18
       startup-config: vjunos.cfg
 
   links:
