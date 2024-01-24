@@ -4,7 +4,7 @@ topology:
   nodes:
     srl:
       kind: nokia_srlinux
-      image: ghcr.io/nokia/srlinux:23.7.1
+      image: ghcr.io/nokia/srlinux:23.10.1
       startup-config: srl.cli
 
     vswitch:
