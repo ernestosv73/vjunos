@@ -1,0 +1,27 @@
+name: vjunossw
+
+topology:
+  nodes:
+    srl:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixrd3
+      #startup-config: srl1.cfg
+
+    vswitch:
+      kind: juniper_vjunosswitch
+      image: vrnetlab/juniper_vjunos-switch:24.4R1.9
+      #startup-config: vjunos.cfg
+    
+       
+    PC1:
+      kind: linux
+      image: docker.io/esanchezv/kaliipv6v2.1:latest
+      exec:
+      - ip -6 route del default dev eth0  
+
+    
+
+  links:
+    - endpoints: ["srl:e1-1", "vswitch:eth1"]
+    - endpoints: ["PC1:eth1", "vswitch:eth2"]
