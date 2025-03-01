@@ -1,0 +1,12 @@
+conf t
+ipv6 dhcp pool vlan10
+address prefix 2001:db8:10::/64
+exit
+interface ethernet 0/1
+ipv6 address 2001:db8:10::1/64
+ipv6 dhcp server vlan10
+ipv6 nd managed-config-flag
+ipv6 nd prefix 2001:db8:10::/64 no-autoconfig
+no shut
+exit
+exit
