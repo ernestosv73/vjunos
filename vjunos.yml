@@ -4,7 +4,7 @@ topology:
   nodes:
     ciscort:
       kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.01
+      image: vrnetlab/cisco_iol:l2-17.12.01
       #startup-config: configs/cisco/config.partial
 
     vswitch:
@@ -15,7 +15,7 @@ topology:
        
     PC1:
       kind: linux
-      image: docker.io/esanchezv/kaliipv6v2.1:latest
+      image: docker.io/esanchezv/kaliipv6v2.2:latest
       exec:
       - ip -6 route del default dev eth0  
 
