@@ -2,11 +2,10 @@ name: vjunossw
 
 topology:
   nodes:
-    srl:
-      kind: nokia_srlinux
-      image: ghcr.io/nokia/srlinux:24.10.1
-      type: ixrd3
-      startup-config: configs/config.json
+    ciscort:
+      kind: cisco_iol
+      image: vrnetlab/cisco_iol:17.12.01
+      #startup-config: configs/cisco/config.partial
 
     vswitch:
       kind: juniper_vjunosswitch
@@ -23,5 +22,5 @@ topology:
     
 
   links:
-    - endpoints: ["srl:e1-1", "vswitch:eth1"]
+    - endpoints: ["ciscort:Ethernet0/1", "vswitch:eth1"]
     - endpoints: ["PC1:eth1", "vswitch:eth2"]
