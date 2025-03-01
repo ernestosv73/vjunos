@@ -19,8 +19,23 @@ topology:
       exec:
       - ip -6 route del default dev eth0  
 
+    PC2:
+      kind: linux
+      image: docker.io/esanchezv/kaliipv6v2.2:latest
+      exec:
+      - ip -6 route del default dev eth0  
+  
+    PC3:
+      kind: linux
+      image: docker.io/esanchezv/kaliipv6v2.2:latest
+      exec:
+      - ip -6 route del default dev eth0  
+
     
 
   links:
     - endpoints: ["ciscort:Ethernet0/1", "vswitch:eth1"]
     - endpoints: ["PC1:eth1", "vswitch:eth2"]
+    - endpoints: ["PC2:eth1", "vswitch:eth3"]
+    - endpoints: ["PC3:eth1", "vswitch:eth4"]
+
