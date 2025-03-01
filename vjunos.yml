@@ -5,7 +5,7 @@ topology:
     ciscort:
       kind: cisco_iol
       image: vrnetlab/cisco_iol:17.12.01
-      #startup-config: configs/cisco/config.partial
+      startup-config: cisco/config.partial
 
     vswitch:
       kind: juniper_vjunosswitch
