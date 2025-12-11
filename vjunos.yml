@@ -1,23 +1,35 @@
-name: vjunossw
+name: mcp-server
 mgmt:
-  network: jun
-  ipv4-subnet: 172.80.80.0/24
+  network: mcp
+  ipv4-subnet: 172.81.81.0/24
+
 topology:
   nodes:
-    ciscort:
-      kind: cisco_iol
-      image: vrnetlab/cisco_iol:17.12.01
-      startup-config: cisco/config.partial
-
-    vswitch:
-      kind: juniper_vjunosswitch
-      image: vrnetlab/juniper_vjunos-switch:24.4R1.9
-      #startup-config: vjunos.cfg
+    
+    srlrouter:
+      kind: nokia_srlinux
+      labels:
+        graph-icon: router
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixrd3
+      startup-config: router/config.json
+      exec:
+        - "sysctl -w net.ipv6.conf.e1-1.accept_ra=0"
+    
+    
+    # Nokia SRL Linux Layer 2 Device
+    srlswitch:
+      kind: nokia_srlinux
+      labels:
+        graph-icon: switch
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixrd3
+      startup-config: switch/srlswitch.cfg
     
        
     PC1:
       kind: linux
-      image: docker.io/esanchezv/kaliipv6v2.2:latest
+      image: esanchezv/kali-mcpserver:latest
       exec:
       - ip -6 route del default dev eth0  
 
@@ -36,8 +48,8 @@ topology:
     
 
   links:
-    - endpoints: ["ciscort:Ethernet0/1", "vswitch:ge-0/0/0"]
-    - endpoints: ["PC1:eth1", "vswitch:ge-0/0/1"]
-    - endpoints: ["PC2:eth1", "vswitch:ge-0/0/2"]
-    - endpoints: ["PC3:eth1", "vswitch:ge-0/0/3"]
+    - endpoints: ["srlrouter:e1-1", "srlswitch:e1-1"]
+    - endpoints: ["PC1:eth1", "srlswitch:e1-2"]
+    - endpoints: ["PC2:eth1", "srlswitch:e1-3"]
+    - endpoints: ["PC3:eth1", "srlswitch:e1-4"]
 
