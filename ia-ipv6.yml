@@ -30,6 +30,8 @@ topology:
     PC1:
       kind: linux
       image: esanchezv/kali-mcpserver:latest
+      ports:
+        - 8000:8000
       exec:
       - ip -6 route del default dev eth0  
 
