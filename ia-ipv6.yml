@@ -29,7 +29,7 @@ topology:
        
     PC1:
       kind: linux
-      image: esanchezv/kali-mcpserver:latest
+      image: esanchezv/kali-mcp:latest
       binds:
         - configs/mcpserver.py:/root/mcpserver.py
       ports:
