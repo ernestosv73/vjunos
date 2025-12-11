@@ -30,8 +30,10 @@ topology:
     PC1:
       kind: linux
       image: esanchezv/kali-mcpserver:latest
+      binds:
+        - configs/mcpserver.py:/root/mcpserver.py
       ports:
-        - 8000:8000
+        - 3000:3000
       exec:
       - ip -6 route del default dev eth0  
 
