@@ -1,0 +1,44 @@
+name: vjunos-lab
+mgmt:
+  network: juniper-ipv6
+  ipv4-subnet: 172.70.70.0/24
+topology:
+  nodes:
+
+    
+    rt-core:
+      kind: juniper_vjunosrouter
+      mgmt-ipv4: 172.70.70.10
+      image: vrnetlab/juniper_vjunos-router:26.2R1.7
+      #startup-config: configs/core.cfg
+
+    switch-agr:
+       kind: cisco_iol
+       image: vrnetlab/cisco_iol:l2-17.12.01 
+       type: L2
+    
+    PC1:
+      kind: linux
+      image: esanchezv/kali-python3:latest
+      exec:
+        - ip -6 address add 2001:db8:10::10/64 dev eth1
+        #- ip -6 route del default dev eth0
+        - ip -6 route add default via 2001:db8:10::1   
+        
+    PC2:
+      kind: linux
+      image: esanchezv/kali-python3:latest 
+      #binds:
+       #- configs/nornir.sh:/root/nornir.sh
+       #- scripts:/root/scripts
+      #exec:
+       #- python3 -m pip config set global.break-system-packages true
+       #- chmod +x /root/nornir.sh
+       #- bash /root/nornir.sh    
+   
+  links:
+    - endpoints: ["PC2:eth1", "rt-core:ge-0/0/1"]
+    - endpoints: ["switch-agr:eth1", "rt-core:ge-0/0/0"]
+    - endpoints: ["switch-agr:eth2", "PC1:eth1"]
+    
+    
