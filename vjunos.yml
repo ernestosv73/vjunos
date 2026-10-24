@@ -5,6 +5,11 @@ mgmt:
 topology:
   nodes:
 
+    rt-provider1:
+      kind: juniper_vjunosrouter
+      mgmt-ipv4: 172.70.70.20
+      image: vrnetlab/juniper_vjunos-router:26.2R1.7
+      #startup-config: configs/core.cfg
     
     rt-core:
       kind: juniper_vjunosrouter
@@ -37,7 +42,9 @@ topology:
        #- bash /root/nornir.sh    
    
   links:
-    - endpoints: ["PC2:eth1", "rt-core:ge-0/0/1"]
+    
+    - endpoints: ["rt-core:ge-0/0/1", "rt-provider1:ge-0/0/0"]
+    - endpoints: ["PC2:eth1", "rt-provider1:ge-0/0/1"]
     - endpoints: ["switch-agr:eth1", "rt-core:ge-0/0/0"]
     - endpoints: ["switch-agr:eth2", "PC1:eth1"]
     
