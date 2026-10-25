@@ -5,11 +5,23 @@ mgmt:
 topology:
   nodes:
 
-    rt-mikrotik:
-      kind: mikrotik_chr
-      mgmt-ipv4: 172.70.70.10
-      image: mikrotik/chr:7.24.5
-      #startup-config: configs/core.cfg
+    rt-ixa:
+      kind: nokia_srlinux
+      #mgmt-ipv4: 172.80.80.5
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixr-d3
+      startup-config: configs/rt-ixa.cfg 
+
+    rt-ufinet:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixr-d3
+      startup-config: configs/rt-ufinet.cfg 
+
+    rt-transit:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:24.10.1
+      type: ixr-d3
     
     
     rt-core:
@@ -42,9 +54,12 @@ topology:
    
   links:
     
-    - endpoints: ["rt-mikrotik:ether3", "PC2:eth1"]
-    - endpoints: ["rt-mikrotik:ether2", "rt-core:ge-0/0/1"]
-    - endpoints: ["switch-agr:eth1", "rt-core:ge-0/0/0"]
+    - endpoints: ["rt-ixa:e1-1", "rt-core:ge-0/0/0"]
+    - endpoints: ["rt-ufinet:e1-1", "rt-core:ge-0/0/1"]
+    - endpoints: ["rt-ixa:e1-2", "rt-transit:e1-1"]
+    - endpoints: ["rt-ufinet:e1-2", "rt-transit:e1-2"]
+    - endpoints: ["rt-core:ge-0/0/2", "switch-agr:eth1"]
     - endpoints: ["switch-agr:eth2", "PC1:eth1"]
+    - endpoints: ["switch-agr:eth3", "PC2:eth1"]
     
     
