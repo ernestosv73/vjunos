@@ -33,13 +33,11 @@ topology:
     PC2:
       kind: linux
       image: esanchezv/kali-python3:latest 
-      #binds:
-       #- configs/nornir.sh:/root/nornir.sh
-       #- scripts:/root/scripts
-      #exec:
-       #- python3 -m pip config set global.break-system-packages true
-       #- chmod +x /root/nornir.sh
-       #- bash /root/nornir.sh    
+      binds:
+       - configs/paquetes.sh:/root/paquetes.sh
+      exec:
+       - chmod +x /root/paquetes.sh
+       - bash /root/paquetes.sh   
    
   links:
     
