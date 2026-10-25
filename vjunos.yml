@@ -29,11 +29,7 @@ topology:
       image: vrnetlab/juniper_vjunos-router:26.2R1.7
       #startup-config: configs/core.cfg
 
-    switch-agr:
-       kind: cisco_iol
-       image: vrnetlab/cisco_iol:l2-17.12.01 
-       type: L2
-    
+       
     PC1:
       kind: linux
       image: esanchezv/kali-python3:latest
