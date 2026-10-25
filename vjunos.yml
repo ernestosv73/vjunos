@@ -5,6 +5,13 @@ mgmt:
 topology:
   nodes:
 
+    rt-mikrotik:
+      kind: mikrotik_chr
+      mgmt-ipv4: 172.70.70.10
+      image: mikrotik/chr:7.24.5
+      #startup-config: configs/core.cfg
+    
+    
     rt-core:
       kind: juniper_vjunosrouter
       mgmt-ipv4: 172.70.70.10
@@ -35,7 +42,8 @@ topology:
    
   links:
     
-    - endpoints: ["rt-core:ge-0/0/1", "PC2:eth1"]
+    - endpoints: ["rt-mikrotik:ether3", "PC2:eth1"]
+    - endpoints: ["rt-mikrotik:ether2", "rt-core:ge-0/0/1"]
     - endpoints: ["switch-agr:eth1", "rt-core:ge-0/0/0"]
     - endpoints: ["switch-agr:eth2", "PC1:eth1"]
     
