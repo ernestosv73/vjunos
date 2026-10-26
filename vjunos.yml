@@ -12,7 +12,8 @@ topology:
     rt-prov2:
       kind: mikrotik_chr
       image: mikrotik/chr:7.24.5
-
+      startup-config: configs/mikrotik.txt
+      
     rt-transit:
       kind: nokia_srlinux
       image: ghcr.io/nokia/srlinux:24.10.1
