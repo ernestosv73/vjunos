@@ -1,1 +1,1 @@
-/ipv6 address add address=2001:db8:10::2/64 interface=ether2
+/ipv6 address add address=2001:db8:20::2/64 interface=ether2
