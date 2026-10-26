@@ -26,7 +26,7 @@ topology:
       kind: juniper_vjunosrouter
       mgmt-ipv4: 172.70.70.10
       image: vrnetlab/juniper_vjunos-router:26.2R1.7
-      startup-config: configs/vjunos.cfg
+      #startup-config: configs/vjunos.cfg
 
        
     PC1:
